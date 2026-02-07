@@ -108,9 +108,6 @@ function Login() {
               disabled={loading}
               required
             />
-            <span onClick={() => navigate("/register")} style={{ cursor: "pointer", color: "#007bff" }}>
-              Register
-            </span>
             <button type="submit" disabled={loading}>
               {loading ? "Logging in..." : "Login"}
             </button>
