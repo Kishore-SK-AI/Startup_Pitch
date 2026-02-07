@@ -20,41 +20,34 @@ function Login() {
 
   const handleLogin = async (e) => {
     e.preventDefault();
-    
-    // Validation
+
     if (!formData.role || !formData.email || !formData.password) {
       toast.error("Please fill all fields");
       return;
     }
 
     setLoading(true);
-    
+
     try {
       const result = await api.post("/auth/login", formData);
-      
-      if(result.data.success || result.status === 200){
-        console.log("LOGIN SUCCESS:", result.data);
-        
-        // Store auth data in localStorage
+
+      if (result.status === 200 && result.data.success) {
         localStorage.setItem("jwt", result.data.token || result.data.jwt);
         localStorage.setItem("userId", result.data.userId);
         localStorage.setItem("userRole", formData.role);
-        
+
         toast.success("Login successful!");
-        console.log("Navigating to dashboard...");
-        navigate("/dashboard");
-      }
-      else{
+        navigate("/fakehome");
+      } else {
         toast.error(result.data.message || "Login failed");
-        console.error("LOGIN FAILED:", result.data.message);
       }
-    }
-    catch(error){
-      console.error("LOGIN ERROR:", error);
-      const errorMessage = error.response?.data?.message || error.message || "Login failed. Please try again.";
+    } catch (error) {
+      const errorMessage =
+        error.response?.data?.message ||
+        error.message ||
+        "Login failed. Please try again.";
       toast.error(errorMessage);
-    }
-    finally{
+    } finally {
       setLoading(false);
     }
   };

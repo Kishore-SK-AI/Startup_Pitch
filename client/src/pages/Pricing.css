@@ -1,0 +1,111 @@
+.pricing-container {
+  max-width: 900px;
+  margin: 40px auto;
+  padding: 32px;
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.08);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.pricing-title {
+  font-size: 2.2rem;
+  font-weight: 700;
+  margin-bottom: 32px;
+  color: #2563eb;
+}
+
+.cards-container {
+  display: flex;
+  gap: 32px;
+  justify-content: center;
+  width: 100%;
+}
+
+.card {
+  background: #f5f7fb;
+  border-radius: 12px;
+  padding: 28px 24px;
+  min-width: 260px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.plan-name {
+  font-size: 1.3rem;
+  font-weight: 600;
+  margin-bottom: 12px;
+}
+
+.price-container {
+  display: flex;
+  align-items: baseline;
+  gap: 4px;
+  margin-bottom: 8px;
+}
+
+.currency {
+  font-size: 1.1rem;
+  color: #2563eb;
+}
+
+.price {
+  font-size: 2.2rem;
+  font-weight: 700;
+  color: #2563eb;
+}
+
+.period {
+  font-size: 0.95rem;
+  color: #6b7280;
+}
+
+.description {
+  margin: 10px 0 18px 0;
+  color: #444;
+  font-size: 1rem;
+}
+
+.cta-button {
+  padding: 10px 24px;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  margin-bottom: 18px;
+  cursor: pointer;
+  background: #2563eb;
+  color: #fff;
+  transition: background 0.2s;
+}
+
+.cta-button.current-plan {
+  background: #bdbdbd;
+  cursor: not-allowed;
+}
+
+.cta-button.upgrade-button {
+  background: #f59e42;
+}
+
+.features-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  color: #333;
+}
+
+.features-list li {
+  margin-bottom: 8px;
+  font-size: 0.98rem;
+  display: flex;
+  align-items: center;
+}
+
+.features-list .icon {
+  margin-right: 8px;
+}

@@ -7,17 +7,24 @@ import ProfilePage from "./pages/ProfilePage";
 import Dashboard from "./pages/Dashboard";
 import Workspace from "./pages/Workspace";
 import ProtectedRoute from "./config/protectedRoute";
+import Validation from "./pages/Validation";
+import Tasks from "./pages/Tasks";
+import FakeHome from "./pages/FakeHome";
+import Package from "./pages/Package";
 
 function App() {
   return (
     <Routes>
       
       <Route path="/" element={<Home />} />
-<Route path="/login" element={<Login />} />
-<Route path="/register" element={<Register />} />
-<Route path="/workspace" element={<Workspace />} />
-
-{/* Protected Routes */}
+      <Route path="/fakehome" element={<FakeHome />} />
+      <Route path="/package" element={<Package />} />
+      <Route path="/login" element={<Login />} />
+      <Route path="/register" element={<Register />} />
+      <Route path="/workspace" element={<Workspace />} />
+      <Route path="/validation" element={<Validation />} />
+      <Route path="/tasks" element={<Tasks />} />
+      {/* Protected Routes */}
       <Route
         path="/dashboard"
         element={

@@ -9,11 +9,15 @@ export default function Navbar() {
         <span className="nav-item" style={{ cursor: "pointer" }} onClick={() => navigate("/workspace")}>
           Workspace
         </span>
-        <span className="nav-item">Tasks</span>
+        <span className="nav-item" style={{ cursor: "pointer" }} onClick={() => navigate("/tasks")}>
+          Tasks
+        </span>
         <span className="nav-item" style={{ cursor: "pointer" }} onClick={() => navigate("/dashboard")}>
           Analytics
         </span>
-        <span className="nav-item">Validation</span>
+        <span className="nav-item" style={{ cursor: "pointer" }} onClick={() => navigate("/validation")}>
+          Validation
+        </span>
       </div>
 
       <div className="nav-right">

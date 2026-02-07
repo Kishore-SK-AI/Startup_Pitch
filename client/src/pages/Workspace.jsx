@@ -44,7 +44,7 @@ function Workspace() {
               />
             </div>
 
-            <div className="form-actions">
+            <div className="form-actions" style={{ justifyContent: "flex-start" }}>
               <button type="button" className="primary-btn">
                 Save Changes
               </button>
@@ -72,7 +72,9 @@ function Workspace() {
               </div>
             ))}
 
-            <button className="add-member-btn">+ Add Team Member</button>
+            <button className="add-member-btn" style={{ alignSelf: "flex-start" }}>
+              + Add Team Member
+            </button>
           </div>
         </div>
       </div>
