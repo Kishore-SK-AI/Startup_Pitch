@@ -1,0 +1,17 @@
+/* Reset / base styles (Tailwind removed) */
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: "Segoe UI", system-ui, sans-serif;
+  background: #f8fafc; /* light gray similar to previous tailwind bg-gray-50 */
+  color: #111827; /* dark gray similar to previous text-gray-900 */
+}
