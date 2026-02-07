@@ -14,14 +14,6 @@ function Home() {
           <h1 className="logo">StartupOps</h1>
         </div>
 
-        <div className="navbar-center">
-          <ul className="nav-links">
-            <li>Tasks</li>
-            <li>Feedback</li>
-            <li>Analytics</li>
-          </ul>
-        </div>
-
         <div className="navbar-right">
           <button
             className="nav-button outline"
@@ -55,12 +47,6 @@ function Home() {
               onClick={() => navigate("/register")}
             >
               Get Started
-            </button>
-            <button
-              className="hero-btn secondary"
-              onClick={() => navigate("/login")}
-            >
-              Demo Login
             </button>
           </div>
         </div>
