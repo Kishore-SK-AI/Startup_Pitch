@@ -43,7 +43,7 @@ function Register() {
         
         toast.success("Registration successful!");
         console.log("Navigating to dashboard...");
-        navigate("/login");
+        navigate("/dashboard");
       } else {
         toast.error(result.data.message || "Registration failed");
         console.error("REGISTER FAILED:", result.data.message);

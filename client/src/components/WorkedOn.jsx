@@ -1,7 +1,13 @@
 export default function WorkedOn() {
   const items = [
-    
-  ];
+  "AI Startup Pitch Advisor",
+  "User Authentication Module",
+  "Dashboard Analytics System",
+  "Pitch Validation Feature",
+  "Team Collaboration Workspace",
+  "Investor Feedback Integration",
+];
+
 
   return (
     <div className="card">
@@ -11,7 +17,7 @@ export default function WorkedOn() {
         <div key={index} style={{ marginBottom: "10px" }}>
           <strong>{item}</strong>
           <div style={{ fontSize: "12px", color: "#6b778c" }}>
-            Created today
+            created on {new Date().toLocaleDateString()}
           </div>
         </div>
       ))}

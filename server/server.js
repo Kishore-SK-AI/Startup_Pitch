@@ -8,6 +8,8 @@ import connectDB from './config/db.js';
 import arcjetMiddleware from './middlewares/arcjet.js';
 import authRoutes from './routes/authRoutes.js';
 import authorize from './middlewares/authMiddleware.js';
+import userRotuer from './routes/userRoutes.js'
+
 
 
 
@@ -29,17 +31,14 @@ if(process.env.NODE_ENV === 'production') {
 }
 
 
+
 app.use('/api/auth',authRoutes);
-app.use('/api/pitches',(req,res)=>{  res.json({message: "Pitches endpoint"});
-});
+app.use('/api/user', userRotuer);
 
 app.get('/', (req, res) => {
   res.send('Welcome to the Startup Pitch API');
 });
 
-app.get('/api/protected', authorize, (req, res) => {
-  res.json({ message: 'This is a protected route' });
-});
 
 const startServer = async () => {
   try {

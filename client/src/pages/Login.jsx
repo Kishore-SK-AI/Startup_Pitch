@@ -101,7 +101,7 @@ function Login() {
               disabled={loading}
               required
             />
-           
+
             <button type="submit" disabled={loading}>
               {loading ? "Logging in..." : "Login"}
             </button>
@@ -109,7 +109,9 @@ function Login() {
 
           <p className="register-text">
             Don’t have an account?{" "}
-            <span onClick={() => navigate("/register")}>Register</span>
+            <span onClick={() => navigate("/register")} style={{ cursor: "pointer", color: "#007bff" }}>
+              Register
+            </span>
           </p>
         </div>
       </div>
