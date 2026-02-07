@@ -89,6 +89,26 @@ body {
   font-weight: 600;
 }
 
+.logout-button {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;   /* or left: 20px if you want */
+  
+  border-radius: 8px;
+  border: none;
+  background: #ffffff;
+  color: #ff0000;
+  padding: 10px 20px;
+  cursor: pointer;
+  transition: background 0.2s ease;
+  z-index: 1000;
+}
+
+.logout-button:hover {
+  background: #ffe6e6;
+}
+
+
 .avatar-large {
   width: 96px;
   height: 96px;

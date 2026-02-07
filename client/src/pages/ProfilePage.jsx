@@ -1,9 +1,23 @@
 import Navbar from "../components/Navbar";
 import ProfileSidebar from "../components/ProfileSidebar";
 import WorkedOn from "../components/WorkedOn";
+import { useNavigate } from "react-router-dom";
+import api from "../config/axios";
 import "./ProfilePage.css";
 
 export default function ProfilePage() {
+  const navigate = useNavigate();
+  const handleLogout = async () => {
+    // Clear the token cookie
+    const res = await api.get('auth/logout');
+    console.log(res.data);
+    // Clear localStorage
+    localStorage.removeItem("jwt");
+    localStorage.removeItem("userRole");
+    localStorage.removeItem("userId");
+    // Redirect to login page
+    navigate("/login");
+  }
   return (
     <>
       <Navbar />
@@ -30,6 +44,8 @@ export default function ProfilePage() {
             </div>
           </div>
         </div>
+
+        <button className="logout-button" onClick={handleLogout}>Logout</button>
       </div>
     </>
   );
