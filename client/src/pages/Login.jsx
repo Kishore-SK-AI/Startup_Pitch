@@ -1,9 +1,12 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
+import api from "../config/axios";
 import "./Login.css";
 
 function Login() {
   const navigate = useNavigate();
+  const [loading, setLoading] = useState(false);
 
   const [formData, setFormData] = useState({
     role: "",
@@ -15,14 +18,44 @@ function Login() {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleLogin = (e) => {
+  const handleLogin = async (e) => {
     e.preventDefault();
-    console.log("LOGIN DATA:", formData);
+    
+    // Validation
+    if (!formData.role || !formData.email || !formData.password) {
+      toast.error("Please fill all fields");
+      return;
+    }
 
-    if (formData.email && formData.password) {
-      navigate("/Dashboard");
-    } else {
-      alert("Please enter email and password");
+    setLoading(true);
+    
+    try {
+      const result = await api.post("/auth/login", formData);
+      
+      if(result.data.success || result.status === 200){
+        console.log("LOGIN SUCCESS:", result.data);
+        
+        // Store auth data in localStorage
+        localStorage.setItem("jwt", result.data.token || result.data.jwt);
+        localStorage.setItem("userId", result.data.userId);
+        localStorage.setItem("userRole", formData.role);
+        
+        toast.success("Login successful!");
+        console.log("Navigating to dashboard...");
+        navigate("/dashboard");
+      }
+      else{
+        toast.error(result.data.message || "Login failed");
+        console.error("LOGIN FAILED:", result.data.message);
+      }
+    }
+    catch(error){
+      console.error("LOGIN ERROR:", error);
+      const errorMessage = error.response?.data?.message || error.message || "Login failed. Please try again.";
+      toast.error(errorMessage);
+    }
+    finally{
+      setLoading(false);
     }
   };
 
@@ -46,6 +79,8 @@ function Login() {
               name="role"
               value={formData.role}
               onChange={handleChange}
+              disabled={loading}
+              required
             >
               <option value="">Select Role</option>
               <option value="founder">Founder</option>
@@ -59,6 +94,8 @@ function Login() {
               placeholder="Email ID"
               value={formData.email}
               onChange={handleChange}
+              disabled={loading}
+              required
             />
 
             {/* Password */}
@@ -68,9 +105,15 @@ function Login() {
               placeholder="Password"
               value={formData.password}
               onChange={handleChange}
+              disabled={loading}
+              required
             />
-
-            <button type="submit">Login</button>
+            <span onClick={() => navigate("/register")} style={{ cursor: "pointer", color: "#007bff" }}>
+              Register
+            </span>
+            <button type="submit" disabled={loading}>
+              {loading ? "Logging in..." : "Login"}
+            </button>
           </form>
 
           <p className="register-text">

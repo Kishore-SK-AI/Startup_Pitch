@@ -1,9 +1,12 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import "./Login.css"; // reuse same styles
+import { toast } from "react-toastify";
+import api from "../config/axios";
+import "./Login.css"; 
 
 function Register() {
   const navigate = useNavigate();
+  const [loading, setLoading] = useState(false);
 
   const [formData, setFormData] = useState({
     username: "",
@@ -16,9 +19,44 @@ function Register() {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleRegister = (e) => {
+  const handleRegister = async (e) => {
     e.preventDefault();
-    console.log("REGISTER DATA:", formData);
+    
+    // Validation
+    if (!formData.username || !formData.role || !formData.email || !formData.password) {
+      toast.error("Please fill all fields");
+      return;
+    }
+
+    setLoading(true);
+    
+    try {
+      const result = await api.post("/auth/register", formData);
+      
+      if (result.data.success || result.status === 201) {
+        console.log("REGISTER SUCCESS:", result.data);
+        
+        // Store auth data in localStorage
+        localStorage.setItem("jwt", result.data.token || result.data.jwt);
+        localStorage.setItem("userId", result.data.userId);
+        localStorage.setItem("userRole", formData.role);
+        
+        toast.success("Registration successful!");
+        console.log("Navigating to dashboard...");
+        navigate("/login");
+      } else {
+        toast.error(result.data.message || "Registration failed");
+        console.error("REGISTER FAILED:", result.data.message);
+      }
+    }
+    catch(error){
+      console.error("REGISTER ERROR:", error);
+      const errorMessage = error.response?.data?.message || error.message || "Registration failed. Please try again.";
+      toast.error(errorMessage);
+    }
+    finally{
+      setLoading(false);
+    }
   };
 
   return (
@@ -43,6 +81,8 @@ function Register() {
               placeholder="Username"
               value={formData.username}
               onChange={handleChange}
+              disabled={loading}
+              required
             />
 
             {/* Role */}
@@ -50,6 +90,8 @@ function Register() {
               name="role"
               value={formData.role}
               onChange={handleChange}
+              disabled={loading}
+              required
             >
               <option value="">Select Role</option>
               <option value="founder">Founder</option>
@@ -63,6 +105,8 @@ function Register() {
               placeholder="Email ID"
               value={formData.email}
               onChange={handleChange}
+              disabled={loading}
+              required
             />
 
             {/* Password */}
@@ -72,14 +116,20 @@ function Register() {
               placeholder="Password"
               value={formData.password}
               onChange={handleChange}
+              disabled={loading}
+              required
             />
 
-            <button type="submit">Register</button>
+            <button type="submit" disabled={loading}>
+              {loading ? "Registering..." : "Register"}
+            </button>
           </form>
 
           <p className="register-text">
             Already have an account?{" "}
-            <span onClick={() => navigate("/login")}>Login</span>
+            <span onClick={() => navigate("/login")} style={{ cursor: "pointer", color: "#007bff" }}>
+              Login
+            </span>
           </p>
         </div>
       </div>
