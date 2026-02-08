@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import api from "../config/axios";
-import "./Success.css"; // 👈 Add this
+import "./success.css"; // 
 
 export default function Success() {
 
