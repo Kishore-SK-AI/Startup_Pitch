@@ -1,4 +1,4 @@
-import './Cancel.css';
+import './cancel.css';
 
 
 export default function Cancel() {
