@@ -1,13 +1,42 @@
 import { useState } from 'react'
 import './Feedback.css'
-import Navbar from '../components/Navbar'
+import Navbar from '../components/Navbar';
+import api from "../config/axios";
+import { useEffect } from 'react';
 
 function Feedback() {
-  const [reviews, setReviews] = useState([
-    { id: 1, text: "Great product! Really loved it.", date: new Date().toLocaleDateString() },
-    { id: 2, text: "Customer service was helpful.", date: new Date(Date.now() - 86400000).toLocaleDateString() }
-  ]);
+  const [reviews, setReviews] = useState(() => {
+    const today = new Date().toLocaleDateString();
+    const yesterday = new Date(Date.now() - 86400000).toLocaleDateString();
+    return [
+      { id: 1, text: "Great product! Really loved it.", date: today },
+      { id: 2, text: "Customer service was helpful.", date: yesterday }
+    ];
+  });
   const [newReview, setNewReview] = useState("");
+  const [user, setUser] = useState(null);
+    
+      // Fetch user
+      useEffect(() => {
+        const fetchUser = async () => {
+          try {
+            const userId = localStorage.getItem("userId");
+    
+            if (!userId) {
+              console.error("No userId found");
+              return;
+            }
+    
+            const res = await api.get(`/user/${userId}`);
+    
+            setUser(res.data.data);
+          } catch (err) {
+            console.error("Fetch user error:", err);
+          }
+        };
+    
+        fetchUser();
+      }, []);
 
   const handleAddReview = (e) => {
     e.preventDefault();
@@ -25,7 +54,7 @@ function Feedback() {
 
   return (
     <>
-      <Navbar />
+      <Navbar user={user} />
       <div className="feedback-container">
         <h1>Customer Feedback</h1>
         <div className="review-form-card">

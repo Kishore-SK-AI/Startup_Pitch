@@ -1,5 +1,7 @@
 import React from "react";
 import "./Validation.css";
+import api from "../config/axios";
+import { useState, useEffect } from "react";
 import Navbar from "../components/Navbar"; // added: import the Navbar component
 
 // Inline replacement for lucide-react's MessageSquare to avoid unresolved import
@@ -48,10 +50,33 @@ function Validation() {
       sentiment: "Neutral",
     },
   ];
+  const [user, setUser] = useState(null);
+      
+        // Fetch user
+        useEffect(() => {
+          const fetchUser = async () => {
+            try {
+              const userId = localStorage.getItem("userId");
+      
+              if (!userId) {
+                console.error("No userId found");
+                return;
+              }
+      
+              const res = await api.get(`/user/${userId}`);
+      
+              setUser(res.data.data);
+            } catch (err) {
+              console.error("Fetch user error:", err);
+            }
+          };
+      
+          fetchUser();
+        }, []);
 
   return (
     <>
-    <Navbar />
+    <Navbar user={user} />
     <div className="validation">
        {/* added: render Navbar above validation content */}
 

@@ -1,6 +1,8 @@
 import React from "react";
 import './Dashboard.css';
 import Navbar from "../components/Navbar";
+import api from "../config/axios";
+import { useState, useEffect } from "react";
 import {
   AreaChart,
   Area,
@@ -39,9 +41,32 @@ const stats = [
 ];
 
 function Dashboard() {
+    const [user, setUser] = useState(null);
+  
+    // Fetch user
+    useEffect(() => {
+      const fetchUser = async () => {
+        try {
+          const userId = localStorage.getItem("userId");
+  
+          if (!userId) {
+            console.error("No userId found");
+            return;
+          }
+  
+          const res = await api.get(`/user/${userId}`);
+  
+          setUser(res.data.data);
+        } catch (err) {
+          console.error("Fetch user error:", err);
+        }
+      };
+  
+      fetchUser();
+    }, []);
   return (
     <>
-      <Navbar />
+      <Navbar user={user} />
       <div className="dashboard">
         {/* Header */}
         <div className="dashboard-header">

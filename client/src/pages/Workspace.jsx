@@ -1,17 +1,43 @@
 import React from "react";
 import "./Workspace.css";
+import api from "../config/axios";
+import { useState, useEffect } from "react";
 import Navbar from "../components/Navbar";
 
 function Workspace() {
+
   const teamMembers = [
     { name: "Alice Chen", role: "Founder & CEO", email: "alice@example.com" },
     { name: "Bob Smith", role: "CTO", email: "bob@example.com" },
     { name: "Carol Williams", role: "Product Designer", email: "carol@example.com" },
   ];
+  const [user, setUser] = useState(null);
+      
+        // Fetch user
+        useEffect(() => {
+          const fetchUser = async () => {
+            try {
+              const userId = localStorage.getItem("userId");
+      
+              if (!userId) {
+                console.error("No userId found");
+                return;
+              }
+      
+              const res = await api.get(`/user/${userId}`);
+      
+              setUser(res.data.data);
+            } catch (err) {
+              console.error("Fetch user error:", err);
+            }
+          };
+      
+          fetchUser();
+        }, []);
 
   return (
     <>
-      <Navbar />
+      <Navbar user={user} />
       <div className="workspace">
         {/* Header */}
         <div className="workspace-header">
