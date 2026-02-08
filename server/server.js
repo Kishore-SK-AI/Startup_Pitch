@@ -26,9 +26,6 @@ app.use(cookieParser());
 // CORS configuration
 const allowedOrigins = [
   'https://startup-pitch-drab.vercel.app',
-  'http://localhost:5173',
-  'http://localhost:5174',
-  'http://localhost:3000',
   process.env.CLIENT_URL
 ].filter(Boolean);
 
@@ -45,9 +42,9 @@ if(process.env.NODE_ENV === 'production') {
 
 
 
-app.use('/api/auth',authRoutes);
-app.use('/api/user', userRotuer);
-app.use('/api/checkout', authorize, checkoutRoutes);
+app.use('/auth',authRoutes);
+app.use('/user', userRotuer);
+app.use('/checkout', authorize, checkoutRoutes);
 
 app.get('/', (req, res) => {
   res.send('Welcome to the Startup Pitch API');
