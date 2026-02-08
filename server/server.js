@@ -8,7 +8,8 @@ import connectDB from './config/db.js';
 import arcjetMiddleware from './middlewares/arcjet.js';
 import authRoutes from './routes/authRoutes.js';
 import authorize from './middlewares/authMiddleware.js';
-import userRotuer from './routes/userRoutes.js'
+import userRotuer from './routes/userRoutes.js';
+import checkoutRoutes from './routes/checkoutRoute.js';
 
 
 
@@ -34,6 +35,7 @@ if(process.env.NODE_ENV === 'production') {
 
 app.use('/api/auth',authRoutes);
 app.use('/api/user', userRotuer);
+app.use('/api/checkout', authorize, checkoutRoutes);
 
 app.get('/', (req, res) => {
   res.send('Welcome to the Startup Pitch API');

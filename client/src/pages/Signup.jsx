@@ -37,13 +37,14 @@ function Register() {
         console.log("REGISTER SUCCESS:", result.data);
         
         // Store auth data in localStorage
-        localStorage.setItem("jwt", result.data.token || result.data.jwt);
+
         localStorage.setItem("userId", result.data.userId);
         localStorage.setItem("userRole", formData.role);
         
-        toast.success("Registration successful!");
-        console.log("Navigating to dashboard...");
-        navigate("/dashboard");
+        if(result.data.success){
+          toast.success("Registration successful!");
+          navigate("/login");
+        }
       } else {
         toast.error(result.data.message || "Registration failed");
         console.error("REGISTER FAILED:", result.data.message);

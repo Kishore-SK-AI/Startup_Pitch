@@ -35,6 +35,7 @@ function Login() {
         localStorage.setItem("jwt", result.data.token || result.data.jwt);
         localStorage.setItem("userId", result.data.userId);
         localStorage.setItem("userRole", formData.role);
+        localStorage.setItem("isPro", result.data.isPro || false);
 
         toast.success("Login successful!");
         navigate("/fakehome");

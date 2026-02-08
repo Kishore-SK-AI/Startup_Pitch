@@ -20,9 +20,13 @@ const userSchema = new mongoose.Schema(
 
     role: {
       type: String,
-      required:true,
+      required: true,
       enum: ["founder", "member"],
       default: "member",
+    },
+    isPro: {
+      type: Boolean,
+      default: false,
     },
 
     startup: {
@@ -30,7 +34,7 @@ const userSchema = new mongoose.Schema(
       ref: "Startup",
     },
   },
-  { timestamps: true }
+  { timestamps: true },
 );
 
 export default mongoose.model("User", userSchema);
