@@ -21,8 +21,13 @@ export default function Navbar({ user }) {
         >
           Workspace
         </span>
-
-        <span className="nav-item">Tasks</span>
+      <span
+          className="nav-item"
+          style={{ cursor: "pointer" }}
+          onClick={() => navigate("/tasks")}
+        >
+          Tasks
+        </span>
 
         <span
           className="nav-item"
@@ -32,7 +37,21 @@ export default function Navbar({ user }) {
           Analytics
         </span>
 
-        <span className="nav-item">Validation</span>
+        <span
+          className="nav-item"
+          style={{ cursor: "pointer" }}
+          onClick={() => navigate("/validation")}
+        >
+          Validation
+        </span>
+        <span
+          className="nav-item"
+          style={{ cursor: "pointer" }}
+          onClick={() => navigate("/feedback")}
+        >
+          Feedback
+        </span>
+        
       </div>
 
       <div className="nav-right">

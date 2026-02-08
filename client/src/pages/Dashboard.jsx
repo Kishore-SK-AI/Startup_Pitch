@@ -1,8 +1,6 @@
-import React, { useEffect, useState } from "react";
-import "./Dashboard.css";
-import api from "../config/axios";
+import React from "react";
+import './Dashboard.css';
 import Navbar from "../components/Navbar";
-
 import {
   AreaChart,
   Area,
@@ -15,13 +13,13 @@ import {
   Bar,
   Legend,
 } from "recharts";
-
 import {
   TrendingUp,
   Users,
   CheckCircle,
   AlertCircle,
 } from "lucide-react";
+import "./Dashboard.css";
 
 const data = [
   { name: "Jan", tasks: 4, validation: 24 },
@@ -33,71 +31,34 @@ const data = [
   { name: "Jul", tasks: 34, validation: 43 },
 ];
 
-const statsTemplate = [
-  { label: "Role", key: "role", icon: Users, color: "purple" },
-  { label: "Email", key: "email", icon: CheckCircle, color: "blue" },
+const stats = [
+  { label: "Total Tasks", value: "124", icon: CheckCircle, color: "blue" },
+  { label: "Team Members", value: "8", icon: Users, color: "purple" },
+  { label: "Validation Score", value: "85%", icon: TrendingUp, color: "green" },
+  { label: "Pending Issues", value: "12", icon: AlertCircle, color: "red" },
 ];
 
 function Dashboard() {
-  const [user, setUser] = useState(null);
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    const fetchUser = async () => {
-      try {
-        const userId = localStorage.getItem("userId");
-
-        if (!userId) {
-          console.error("No userId found");
-          return;
-        }
-
-        const res = await api.get(`/user/${userId}`);
-
-        // Backend sends: { success, data }
-        setUser(res.data.data);
-
-        setLoading(false);
-      } catch (err) {
-        console.error("Fetch user error:", err);
-        setLoading(false);
-      }
-    };
-
-    fetchUser();
-  }, []);
-
-  if (loading) return <p>Loading...</p>;
-
-  if (!user) return <p>User not found</p>;
-
   return (
     <>
-      <Navbar user={user} />
-
+      <Navbar />
       <div className="dashboard">
-
         {/* Header */}
         <div className="dashboard-header">
-          <h2>Welcome, {user.username} 👋</h2>
-          <p>Overview of your startup's progress.</p>
+          <h2>Analytics Dashboard</h2>
+          <p>Overview of your startup's progress and health.</p>
         </div>
 
         {/* Stats */}
         <div className="stats-grid">
-
-          {statsTemplate.map((stat) => {
+          {stats.map((stat) => {
             const Icon = stat.icon;
-
             return (
               <div className="stat-card" key={stat.label}>
                 <div className="stat-text">
                   <span className="stat-label">{stat.label}</span>
-                  <span className="stat-value">
-                    {user[stat.key]}
-                  </span>
+                  <span className="stat-value">{stat.value}</span>
                 </div>
-
                 <div className={`stat-icon ${stat.color}`}>
                   <Icon size={22} />
                 </div>
@@ -108,10 +69,8 @@ function Dashboard() {
 
         {/* Charts */}
         <div className="charts-grid">
-
           <div className="chart-card">
             <h3>Task Completion Trends</h3>
-
             <div className="chart-box">
               <ResponsiveContainer width="100%" height="100%">
                 <AreaChart data={data}>
@@ -119,7 +78,6 @@ function Dashboard() {
                   <XAxis dataKey="name" />
                   <YAxis />
                   <Tooltip />
-
                   <Area
                     type="monotone"
                     dataKey="tasks"
@@ -134,7 +92,6 @@ function Dashboard() {
 
           <div className="chart-card">
             <h3>Validation Metrics</h3>
-
             <div className="chart-box">
               <ResponsiveContainer width="100%" height="100%">
                 <BarChart data={data}>
@@ -143,7 +100,6 @@ function Dashboard() {
                   <YAxis />
                   <Tooltip />
                   <Legend />
-
                   <Bar
                     dataKey="validation"
                     fill="#8b5cf6"
@@ -153,7 +109,6 @@ function Dashboard() {
               </ResponsiveContainer>
             </div>
           </div>
-
         </div>
       </div>
     </>

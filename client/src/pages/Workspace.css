@@ -19,9 +19,16 @@
 .card {
   background: #ffffff;
   margin-top: 24px;
+  margin-bottom: 32px;
   padding: 24px;
   border-radius: 14px;
   border: 1px solid #e5e7eb;
+  max-width: 1100px;
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
 }
 
 .card h3 {
@@ -33,12 +40,15 @@
 
 /* Form */
 .form {
+  width: 100%;
   display: flex;
   flex-direction: column;
   gap: 16px;
+  align-items: flex-start;
 }
 
 .form-grid {
+  width: 100%;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
   gap: 16px;
@@ -47,6 +57,8 @@
 .form-group {
   display: flex;
   flex-direction: column;
+  align-items: flex-start;
+  width: 100%;
 }
 
 .form-group label {
@@ -58,11 +70,9 @@
 
 .form-group input,
 .form-group textarea {
-  padding: 10px 12px;
-  border-radius: 8px;
-  border: 1px solid #d1d5db;
-  font-size: 14px;
-  outline: none;
+  width: 100%;
+  resize: vertical;
+  min-height: 90px;
 }
 
 .form-group input:focus,
@@ -74,6 +84,9 @@
 .form-actions {
   display: flex;
   justify-content: flex-end;
+  margin-top: 8px;
+  margin-bottom: 0;
+  width: 100%;
 }
 
 .primary-btn {
@@ -84,14 +97,37 @@
   border-radius: 10px;
   font-size: 14px;
   cursor: pointer;
+  margin-bottom: 0;
 }
 
-.primary-btn:hover {
-  background: #1e40af;
+.add-member-btn {
+  background: none;
+  border: none;
+  margin-top: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #2563eb;
+  cursor: pointer;
+  text-align: left;
+  padding-left: 0;
+  align-self: flex-end;
+}
+
+.add-member-btn:hover {
+  color: #1e40af;
+}
+
+.workspace {
+  width: 100%;
+  padding: 24px 32px;
+  background: #f5f7fb;
+  min-height: 100vh;
+  font-family: "Inter", sans-serif;
 }
 
 /* Team Members */
 .team-list {
+  width: 100%;
   display: flex;
   flex-direction: column;
   gap: 14px;
@@ -99,17 +135,20 @@
 
 .team-item {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
+  flex-direction: row;
+  align-items: flex-start;
   background: #f9fafb;
   padding: 12px;
   border-radius: 10px;
+  width: 100%;
+  gap: 24px;
 }
 
 .team-left {
   display: flex;
-  align-items: center;
-  gap: 12px;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 4px;
 }
 
 .avatar {
@@ -122,11 +161,13 @@
   align-items: center;
   justify-content: center;
   font-weight: 700;
+  margin-bottom: 4px;
 }
 
 .team-name {
   font-weight: 600;
   color: #111827;
+  font-size: 16px;
 }
 
 .team-role {
@@ -137,38 +178,6 @@
 .team-email {
   font-size: 13px;
   color: #6b7280;
-}
-
-/* Add Member */
-.add-member-btn {
-  background: none;
-  border: none;
-  margin-top: 8px;
-  font-size: 14px;
-  font-weight: 600;
-  color: #2563eb;
-  cursor: pointer;
-  text-align: left;
-}
-
-.add-member-btn:hover {
-  color: #1e40af;
-}
-
-.workspace-content {
-  max-width: 100%;
-  margin: 0 auto;
-  padding: 20px;
-  background: #f5f7fb;
-  min-height: 100vh;
-  font-family: "Inter", sans-serif;
-}
-
-.workspace {
-  max-width: 100%;
-  margin: 0 auto;
-  /* Remove padding here */
-  background: #f5f7fb;
-  min-height: 100vh;
-  font-family: "Inter", sans-serif;
+  margin-left: auto;
+  align-self: flex-start;
 }

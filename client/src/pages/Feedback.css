@@ -1,0 +1,117 @@
+.feedback-container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  text-align: center;
+}
+
+.feedback-container h1 {
+  font-size: 3.2em;
+  line-height: 1.1;
+  margin-bottom: 0.5em;
+}
+
+.review-form-card {
+  background: #e0f2fe;
+  padding: 20px;
+  border-radius: 8px;
+  margin-bottom: 30px;
+  box-shadow: 0 4px 6px -1px rgba(59, 130, 246, 0.1), 0 2px 4px -1px rgba(59, 130, 246, 0.06);
+  border: 1px solid #bae6fd;
+}
+
+.review-form-card h2 {
+  color: #0369a1;
+}
+
+.review-form-card textarea {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border-radius: 4px;
+  border: 1px solid #7dd3fc;
+  background-color: white;
+  resize: vertical;
+  font-family: inherit;
+}
+
+.review-form-card textarea:focus {
+  outline: 2px solid #3b82f6;
+  border-color: #3b82f6;
+}
+
+.feedback-button {
+  border-radius: 8px;
+  border: 1px solid transparent;
+  padding: 0.6em 1.2em;
+  font-size: 1em;
+  font-weight: 500;
+  font-family: inherit;
+  background-color: #3b82f6;
+  color: white;
+  cursor: pointer;
+  transition: border-color 0.25s, background-color 0.25s;
+}
+
+.feedback-button:hover {
+  background-color: #2563eb;
+  border-color: #2563eb;
+}
+
+.feedback-button:focus,
+.feedback-button:focus-visible {
+  outline: 4px auto -webkit-focus-ring-color;
+}
+
+.review-card {
+  background: white;
+  border: 1px solid #e0f2fe;
+  padding: 15px;
+  margin-bottom: 15px;
+  border-radius: 8px;
+  text-align: left;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+  border-left: 4px solid #3b82f6;
+}
+
+.review-date {
+  color: #64748b;
+  font-size: 0.85em;
+  margin-bottom: 5px;
+}
+
+.review-text {
+  font-size: 1.1em;
+  line-height: 1.4;
+}
+
+@media (prefers-color-scheme: dark) {
+  .review-form-card {
+    background: #1e293b;
+    border-color: #334155;
+  }
+  .review-form-card h2 {
+    color: #bae6fd;
+  }
+  .review-form-card textarea {
+    background-color: #0f172a;
+    border-color: #334155;
+    color: white;
+  }
+  .review-card {
+    background: #1e293b;
+    border-color: #334155;
+    border-left-color: #60a5fa;
+  }
+  .review-date {
+    color: #94a3b8;
+  }
+  
+  .feedback-button {
+    background-color: #1e293b;
+  }
+  .feedback-button:hover {
+    background-color: #3b82f6;
+    border-color: #3b82f6;
+  }
+}

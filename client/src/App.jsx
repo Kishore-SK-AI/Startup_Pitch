@@ -11,6 +11,8 @@ import Validation from "./pages/Validation";
 import Tasks from "./pages/Tasks";
 import FakeHome from "./pages/FakeHome";
 import Package from "./pages/Package";
+import Feedback from "./pages/Feedback";
+
 
 function App() {
   return (
@@ -24,6 +26,7 @@ function App() {
       <Route path="/workspace" element={<Workspace />} />
       <Route path="/validation" element={<Validation />} />
       <Route path="/tasks" element={<Tasks />} />
+      <Route path="/feedback" element={<Feedback />} />
       {/* Protected Routes */}
       <Route
         path="/dashboard"

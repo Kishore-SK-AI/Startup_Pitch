@@ -12,7 +12,7 @@ function Workspace() {
   return (
     <>
       <Navbar />
-      <div className="workspace-content">
+      <div className="workspace">
         {/* Header */}
         <div className="workspace-header">
           <h2>Startup Profile & Workspace</h2>
@@ -44,7 +44,7 @@ function Workspace() {
               />
             </div>
 
-            <div className="form-actions" style={{ justifyContent: "flex-start" }}>
+            <div className="form-actions">
               <button type="button" className="primary-btn">
                 Save Changes
               </button>
@@ -72,9 +72,7 @@ function Workspace() {
               </div>
             ))}
 
-            <button className="add-member-btn" style={{ alignSelf: "flex-start" }}>
-              + Add Team Member
-            </button>
+            <button className="add-member-btn">+ Add Team Member</button>
           </div>
         </div>
       </div>
