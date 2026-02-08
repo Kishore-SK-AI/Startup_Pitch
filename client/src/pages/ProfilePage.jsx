@@ -48,6 +48,7 @@ export default function ProfilePage() {
       localStorage.removeItem("jwt");     // ✅ fixed
       localStorage.removeItem("userRole");
       localStorage.removeItem("userId");
+      localStorage.removeItem("isPro");
 
       navigate("/login");
 

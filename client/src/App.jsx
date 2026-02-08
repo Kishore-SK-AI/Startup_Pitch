@@ -11,8 +11,9 @@ import Validation from "./pages/Validation";
 import Tasks from "./pages/Tasks";
 import FakeHome from "./pages/FakeHome";
 import Package from "./pages/Package";
+import Success from "./pages/success";
+import Cancel from "./pages/cancel";
 import Feedback from "./pages/Feedback";
-
 
 function App() {
   return (
@@ -26,24 +27,12 @@ function App() {
       <Route path="/workspace" element={<Workspace />} />
       <Route path="/validation" element={<Validation />} />
       <Route path="/tasks" element={<Tasks />} />
-      <Route path="/feedback" element={<Feedback />} />
+      <Route path="/success" element={<Success />} />
+      <Route path="/cancel" element={<Cancel />} />
       {/* Protected Routes */}
-      <Route
-        path="/dashboard"
-        element={
-          <ProtectedRoute allowedRoles={["founder", "member"]}>
-            <Dashboard />
-          </ProtectedRoute>
-        }
-      />
-      <Route
-        path="/profile"
-        element={
-          <ProtectedRoute allowedRoles={["founder", "member"]}>
-            <ProfilePage />
-          </ProtectedRoute>
-        }
-      />
+      <Route path="/dashboard" element={<Dashboard />} />
+      <Route path="/profile" element={<ProfilePage />} />
+      <Route path="/feedback" element={<Feedback />} />
     </Routes>
   );
 }

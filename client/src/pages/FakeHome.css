@@ -1,52 +1,156 @@
+/* Container */
 .fakehome-container {
   min-height: 100vh;
   width: 100vw;
+
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
+
+  position: relative;
+  overflow: hidden;
 }
 
+/* Dark overlay */
+.fakehome-container::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+
+  background: linear-gradient(
+    to bottom right,
+    rgba(15, 23, 42, 0.7),
+    rgba(30, 64, 175, 0.6)
+  );
+
+  z-index: 0;
+}
+
+/* Content Card */
+.fakehome-content {
+  position: relative;
+  z-index: 1;
+
+  padding: 32px 40px;
+  border-radius: 16px;
+
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(12px);
+
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25);
+
+  text-align: center;
+  max-width: 600px;
+
+  margin-bottom: 40px;
+}
+
+/* Title */
+.fakehome-content h1 {
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 800;
+
+  margin-bottom: 14px;
+
+  background: linear-gradient(to right, #60a5fa, #a78bfa);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Text */
+.fakehome-content p {
+  font-size: 1.1rem;
+  line-height: 1.6;
+
+  color: #e5e7eb;
+  margin-bottom: 24px;
+}
+
+/* Upgrade Button */
 .upgrade-btn {
   position: absolute;
-  top: 32px;
-  right: 32px;
+  top: 24px;
+  right: 24px;
+
+  z-index: 2;
+
   padding: 10px 24px;
-  background: #f59e42;
+
+  background: linear-gradient(135deg, #f59e0b, #f97316);
   color: #fff;
+
   border: none;
-  border-radius: 8px;
-  font-size: 16px;
-  font-weight: 600;
+  border-radius: 999px;
+
+  font-size: 15px;
+  font-weight: 700;
+
   cursor: pointer;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+
+  box-shadow: 0 6px 18px rgba(249, 115, 22, 0.4);
+
+  transition: all 0.3s ease;
 }
 
+.upgrade-btn:hover {
+  transform: translateY(-2px) scale(1.03);
+  box-shadow: 0 10px 28px rgba(249, 115, 22, 0.6);
+}
+
+/* Get Started Button */
 .getstarted-btn {
-  margin-top: 24px;
-  padding: 12px 32px;
-  background: #2563eb;
+  position: relative;
+  z-index: 1;
+
+  padding: 14px 36px;
+
+  background: linear-gradient(135deg, #2563eb, #7c3aed);
   color: #fff;
+
   border: none;
-  border-radius: 8px;
+  border-radius: 999px;
+
   font-size: 18px;
-  font-weight: 600;
+  font-weight: 700;
+
   display: flex;
   align-items: center;
+  gap: 8px;
+
   cursor: pointer;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+
+  box-shadow: 0 6px 20px rgba(99, 102, 241, 0.5);
+
+  transition: all 0.3s ease;
 }
 
-.fakehome-content h1 {
-  font-size: 2.5rem;
-  font-weight: 700;
-  margin-bottom: 12px;
+.getstarted-btn:hover {
+  transform: translateY(-2px) scale(1.04);
+  box-shadow: 0 12px 30px rgba(99, 102, 241, 0.7);
 }
 
-.fakehome-content p {
-  font-size: 1.2rem;
-  margin-bottom: 24px;
+/* Responsive */
+@media (max-width: 640px) {
+  .fakehome-content {
+    padding: 24px 20px;
+    margin: 0 16px 32px;
+  }
+
+  .fakehome-content h1 {
+    font-size: 2rem;
+  }
+
+  .fakehome-content p {
+    font-size: 1rem;
+  }
+
+  .getstarted-btn {
+    font-size: 16px;
+    padding: 12px 28px;
+  }
 }
